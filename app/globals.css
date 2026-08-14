@@ -87,8 +87,9 @@ select {
 }
 
 .display {
-  font-size: clamp(3.8rem, 18vw, 13rem);
-  line-height: 0.78;
+  overflow-wrap: anywhere;
+  font-size: clamp(3.2rem, 16vw, 13rem);
+  line-height: 0.82;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -132,6 +133,31 @@ select {
     linear-gradient(var(--line) 1px, transparent 1px),
     linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+.todo-label {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--acid);
+  padding: 0.2rem 0.45rem;
+  color: var(--acid);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.content-link {
+  color: var(--acid);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.content-link:hover,
+.content-link:focus-visible {
+  color: var(--foreground);
+  outline: none;
 }
 
 @media (min-width: 760px) {

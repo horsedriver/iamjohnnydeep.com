@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     title: `${site.name} | Official Website`,
     description: site.description,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#050505",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

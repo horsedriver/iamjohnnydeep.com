@@ -30,6 +30,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: page.intro,
       url: `${site.domain}/${page.slug}/`,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${page.title} | ${site.name}`,
+      description: page.intro,
+    },
   };
 }
 
@@ -64,11 +69,29 @@ export default async function ContentPage({ params }: PageProps) {
               Live structure. Awaiting verified primary material.
             </p>
           </div>
-          {page.items.map((item) => (
+          {page.items.map((item) => {
+            const isTodo = item.startsWith("TODO:");
+            const isBookingEmail = item === `Booking: ${site.email}`;
+            const text = isTodo ? item.replace("TODO: ", "") : item;
+
+            return (
             <article key={item} className="panel p-5">
-              <p className="text-base leading-7 text-white/76">{item}</p>
+              {isTodo ? <span className="todo-label">TODO</span> : null}
+              <p className="mt-3 text-base leading-7 text-white/76">
+                {isBookingEmail ? (
+                  <>
+                    Booking:{" "}
+                    <a className="content-link" href={`mailto:${site.email}`}>
+                      {site.email}
+                    </a>
+                  </>
+                ) : (
+                  text
+                )}
+              </p>
             </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

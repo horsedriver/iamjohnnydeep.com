@@ -7,11 +7,11 @@ export default function Home() {
       <section className="relative min-h-[calc(100vh-112px)] overflow-hidden border-b border-white/15">
         <div className="absolute inset-0 grid-line opacity-30" aria-hidden="true" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(transparent,rgba(0,218,0,0.12))]" aria-hidden="true" />
-        <div className="shell relative grid min-h-[calc(100vh-112px)] content-center gap-8 py-16">
+        <div className="shell relative grid min-h-[calc(100vh-112px)] content-center gap-9 py-20">
           <div className="max-w-5xl">
             <p className="eyebrow">iamjohnnydeep.com / production signal</p>
             <h1 className="display mt-5 font-black">Johnny Deep</h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/74 md:text-2xl md:leading-9">
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/76 md:text-2xl md:leading-9">
               {site.tagline} An official black-site for music, live context, art projects, EPK, booking and archive material.
             </p>
           </div>
@@ -48,7 +48,7 @@ export default function Home() {
               <Link key={page.slug} href={`/${page.slug}/`} className="panel group grid gap-4 p-5 transition hover:border-[var(--acid)]">
                 <span className="mono text-xs text-white/42">0{index + 1}</span>
                 <span className="text-2xl font-black uppercase group-hover:text-[var(--acid)]">{page.label}</span>
-                <span className="text-sm leading-6 text-white/62">{page.intro}</span>
+                <span className="text-sm leading-6 text-white/66">{page.intro}</span>
               </Link>
             ))}
           </div>
