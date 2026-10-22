@@ -24,24 +24,32 @@ const checks = [
 export default function OpavaBriefing() {
   const [done, setDone] = useState<boolean[]>(Array(checks.length).fill(false));
   const [notes, setNotes] = useState("");
+  const [storageReady, setStorageReady] = useState(false);
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("opava-briefing-v1");
-      if (!saved) return;
-      const parsed = JSON.parse(saved) as { done?: boolean[]; notes?: string };
-      if (Array.isArray(parsed.done)) {
-        setDone(checks.map((_, i) => Boolean(parsed.done?.[i])));
-      }
-      if (typeof parsed.notes === "string") setNotes(parsed.notes);
-    } catch {}
+    const timer = window.setTimeout(() => {
+      try {
+        const saved = localStorage.getItem("opava-briefing-v1");
+        if (saved) {
+          const parsed = JSON.parse(saved) as { done?: boolean[]; notes?: string };
+          if (Array.isArray(parsed.done)) {
+            setDone(checks.map((_, i) => Boolean(parsed.done?.[i])));
+          }
+          if (typeof parsed.notes === "string") setNotes(parsed.notes);
+        }
+      } catch {}
+      setStorageReady(true);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
+    if (!storageReady) return;
     try {
       localStorage.setItem("opava-briefing-v1", JSON.stringify({ done, notes }));
     } catch {}
-  }, [done, notes]);
+  }, [done, notes, storageReady]);
 
   const completed = useMemo(() => done.filter(Boolean).length, [done]);
 
